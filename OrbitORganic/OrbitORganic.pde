@@ -1,4 +1,4 @@
-boolean organic = true;
+boolean organic = false;
 int pts=100; 
 float[] a;
 float[] r;
@@ -44,8 +44,6 @@ void draw()
 
 void mouseDragged()
 {
-  if(mouseButton==LEFT)
-    xterm = map((mouseX-width/2),0,width/2,0,1);
-  if(mouseButton==RIGHT)
-    yterm = map((mouseY-height/2),0,height/2,0,1);
+  xterm = map((mouseX-width/2),0,width/2,0,1);
+  yterm = map((mouseY-height/2),0,height/2,0,1);
 }
