@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>&#035;181: processing.js and dat.gui tutorial</title>
+<script type="text/javascript" src="../js/processing.js"></script>
+<script type="text/javascript" src="../js/dat.gui.js"></script>
+</head>
+<body>
+<center>
+<h1><font face="calibri">&#035;181: processing.js and dat.gui tutorial</font></h1>
+<canvas id="tutorial" data-processing-sources="tutorial.pde"></canvas>
+<p id="guiContainer"></p>
+</center>
+
+<script type="text/javascript">
+var ellipseParams = {radiusX:10,radiusY:10,lineWidth:1};
+var gui = new dat.GUI({autoPlace:false});
+gui.add(ellipseParams, 'radiusX', 10,200).step(1);
+gui.add(ellipseParams, 'radiusY', 10,200).step(1);
+gui.add(ellipseParams, 'lineWidth', 1,20).step(1);
+document.getElementById('guiContainer').appendChild(gui.domElement);
+</script>
+</body>
+</html>

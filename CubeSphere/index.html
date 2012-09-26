@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>&#035;181: Points On A Sphere</title>
+<script type="text/javascript" src="../js/processing.js"></script>
+<script type="text/javascript" src="../js/dat.gui.js"></script>
+</head>
+<body>
+<center>
+<h1><font face="calibri">&#035;181: Points On A Sphere</font></h1>
+<canvas id="tutorial" data-processing-sources="CubeSphere.pde"></canvas>
+<p id="guiContainer"></p>
+</center>
+
+<script type="text/javascript">
+var p5Params = {xResolution:32,accumulate:false,xRotate:false,yRotate:true,zRotate:true};
+var gui = new dat.GUI({autoPlace:false});
+gui.add(p5Params, 'xResolution', 2,64).step(2);
+gui.add(p5Params, 'accumulate');
+gui.add(p5Params, 'xRotate');
+gui.add(p5Params, 'yRotate');
+gui.add(p5Params, 'zRotate');
+document.getElementById('guiContainer').appendChild(gui.domElement);
+</script>
+</body>
+</html>
