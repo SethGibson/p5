@@ -1,48 +1,66 @@
-class Params
+/*class Params
 {
-  boolean organic = false;
-  boolean accumulate = true;
-  int bugs = 100; 
-  float xDivisor = 111;
-  float yDivisor = 29;
+  boolean organic;
+  boolean accumulate;
+  int bugs; 
+  float xDivisor;
+  float yDivisor;
+  
+  Params()
+  {
+    this.organic = false;
+    this.accumulate = true;
+    this.bugs = 100;
+    this.xDivisor = 111;
+    this.yDivisor = 29;
+  }
 }
-
+Params p5Params = new Params();
+*/
+int count;
 float xterm = 0;
 float yterm = 0;
-//float[] a;
-//float[] r;
-//float[] s;
+PVector[] swarm;
 
 void setup()
 {
-  size(640,640);
+  size(640,640,JAVA2D);
   background(16);
   stroke(16);
-  a = new float[pts];
-  r = new float[pts];
-  s = new float[pts];
+  swarm = new PVector[p5Params.bugs];
+  count = p5Params.bugs;
   ellipseMode(RADIUS);
-  for(int i=0;i<pts;i++)
+  for(int i=0;i<count;i++)
   {
-    a[i] = random(0,width/2);
-    r[i] = random(5,15);
-    s[i] = random(0,2);
+    swarm[i] = new PVector(random(0,width/2), random(0,2), random(5,15));    
   }
 }
 
 void draw()
 {
-  fill(0,8);
-  rect(0,0,width,height);
-  for(int i=0;i<pts;i++)
+  if(p5Params.accumulate)
   {
-    float x0 = (a[i]*sin(frameCount*PI/xdend*s[i]))*xterm+width/2;
-    float y0 = (a[i]*cos(frameCount*PI/ydend*s[i]))*yterm+height/2;
+    fill(0,8);
+    rect(0,0,width,height);
+  }
+  else
+  {
+    background(16);
+  }
+  for(int i=0;i<count;i++)
+  {
+    float rad = swarm[i].z;
+    float spd = map(i,0,count,0.1,1);
+    if(p5Params.organic)
+    {
+      rad = random(2,swarm[i].z);
+      spd = swarm[i].y;
+    }
+    
+    float x0 = (swarm[i].x*sin(frameCount*PI/p5Params.xDivisor*spd))*xterm+width/2;
+    float y0 = (swarm[i].x*cos(frameCount*PI/p5Params.yDivisor*spd))*yterm+height/2;
     float rt = map(x0,0,width,0,255);
     float bt = map(y0,0,height,0,255);
-    float rad = r[i];
-    if(organic)
-      rad = random(2,r[i]);
     fill(rt,128,bt);
     ellipse(x0,y0,rad,rad);
   }  
