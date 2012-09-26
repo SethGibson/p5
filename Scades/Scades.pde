@@ -1,20 +1,31 @@
+class Params
+{
+  int resolution;
+  Params()
+  {
+    this.resolution = 64;
+  }
+}
+Params p5Params = new Params();
+
 PGraphics buffer;
 PImage bufferImg;
 boolean lineStarted=false;
 int[] rows;
-int reso = 40;
+int activeRes;
 float ix,iy;
 int xStep,yStep;
 float aspectRatio;
 void setup()
 {
-  size(800,800,JAVA2D);
+  size(640,640,JAVA2D);
   ellipseMode(RADIUS);
+  activeRes = p5Params.resolution;
   aspectRatio = width/(float)height;
-  xStep = width/reso;
-  yStep = height/reso;
-  rows = new int[reso+1];
-  for(int i=0;i<=reso;i++)
+  xStep = width/activeRes;
+  yStep = height/activeRes;
+  rows = new int[activeRes+1];
+  for(int i=0;i<=activeRes;i++)
   {
     rows[i] = yStep*i;
   }
@@ -50,13 +61,13 @@ void draw()
   
   buffer.endDraw();
   buffer.loadPixels();
-  for(int y=0;y<reso;y++)
+  for(int y=0;y<activeRes;y++)
   {
     rows[y]+=1;
     if(rows[y]>=height)
       rows[y]=0;
     
-    for(int x=0;x<=reso;x++)
+    for(int x=0;x<=activeRes;x++)
     {
       int xs = xStep*x;
       if(xs>width)
