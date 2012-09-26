@@ -1,21 +1,5 @@
-/*class ShockWave
-{
-  float epiX,epiY;
-  int radius0;
-  int radius1;
-  
-  ShockWave(){}
-  ShockWave(float x,float y)
-  {
-    this.epiX=x;
-    this.epiY=y;
-    this.radius0=1;
-    this.radius1=max(abs(x-0),abs(x-750));
-  }
-}*/
-
 boolean exploding;
-int burstRadius = 3;
+float burstRadius = 0.25;
 int NUM_PTS = 500;
 int x[] = new int[NUM_PTS];
 int y[] = new int[NUM_PTS];
@@ -101,8 +85,6 @@ void draw()
       {
         weight = max(1,(activeDist/(float)shockwave)*15);
         redTerm = max(1,(activeDist/(float)shockwave)*255);
-        //weight = 15;
-        //redTerm = 255;
       }
       else
       {
@@ -112,8 +94,8 @@ void draw()
     }
     else
     {
-      weight = max(1,map(activeDist*burstRadius,0,screenDist,15,1));
-      redTerm = max(1,map(activeDist*burstRadius,0,screenDist,255,1));
+      weight = max(1,lerp(15,1,activeDist/(screenDist*burstRadius)));
+      redTerm = max(1,lerp(255,1,activeDist/(screenDist*burstRadius)));
     }
     buffer.pushStyle();
     buffer.stroke(255,redTerm,0);
@@ -131,9 +113,13 @@ void draw()
     }
     else
     {
-      shockwave+=10;
+      shockwave+=8;
     }
   }
+  pushStyle();
+  fill(32);
+  text("#181",710,190);
+  popStyle();
 }
 
 void mousePressed()
