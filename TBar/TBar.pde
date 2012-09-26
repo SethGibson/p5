@@ -1,12 +1,35 @@
-PImage img;
-PGraphics buffer;
-int NUM_PTS = 300;
+/*class ShockWave
+{
+  float epiX,epiY;
+  int radius0;
+  int radius1;
+  
+  ShockWave(){}
+  ShockWave(float x,float y)
+  {
+    this.epiX=x;
+    this.epiY=y;
+    this.radius0=1;
+    this.radius1=max(abs(x-0),abs(x-750));
+  }
+}*/
+
+boolean exploding;
+int burstRadius = 3;
+int NUM_PTS = 500;
 int x[] = new int[NUM_PTS];
 int y[] = new int[NUM_PTS];
 int dx[] = new int[NUM_PTS];
 int dy[] = new int[NUM_PTS];
+float shockwave;
+float seismicRadius;
+float epiX,epiY;
+float weight,redTerm;
 float screenDist;
-float mouseDist;
+float activeDist;
+PImage img;
+PGraphics buffer;
+
 void setup()
 {
   img = loadImage("header.png");
@@ -27,7 +50,7 @@ void setup()
     }
   }
   
-  size(600,150,JAVA2D);
+  size(750,200,JAVA2D);
   ellipseMode(RADIUS);
   noStroke();
   
@@ -69,15 +92,58 @@ void draw()
       dy[i]*=-1;      
     }
     
-    mouseDist = dist(x[i],y[i],mouseX,mouseY);
-    float weight = max(1,map(mouseDist*3,0,screenDist,15,1));
-    float r = max(1,map(mouseDist*3,0,screenDist,255,1));
+    activeDist = dist(x[i],y[i],mouseX,mouseY);
+    
+    if(exploding)
+    {
+      activeDist = dist(x[i],y[i],epiX,epiY);
+      if(activeDist<=shockwave)
+      {
+        weight = max(1,(activeDist/(float)shockwave)*15);
+        redTerm = max(1,(activeDist/(float)shockwave)*255);
+        //weight = 15;
+        //redTerm = 255;
+      }
+      else
+      {
+        weight = 1;
+        redTerm = 1;
+      }
+    }
+    else
+    {
+      weight = max(1,map(activeDist*burstRadius,0,screenDist,15,1));
+      redTerm = max(1,map(activeDist*burstRadius,0,screenDist,255,1));
+    }
     buffer.pushStyle();
-    buffer.stroke(255,r,0);
+    buffer.stroke(255,redTerm,0);
     buffer.strokeWeight(weight);
     buffer.line(x[i]-dx[i],y[i]-dy[i],x[i],y[i]);
     buffer.popStyle();
   }
   buffer.endDraw();  
   image(buffer,0,0);
+  if(exploding)
+  {
+    if(shockwave>=seismicRadius)
+    {
+      exploding=false;
+    }
+    else
+    {
+      shockwave+=10;
+    }
+  }
+}
+
+void mousePressed()
+{
+  if(!exploding)
+  {
+    epiX=mouseX;
+    epiY=mouseY;
+    exploding=true;
+    shockwave=0;
+    seismicRadius = max(abs(epiX-width),epiX);
+  }
 }
