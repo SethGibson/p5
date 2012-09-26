@@ -14,9 +14,10 @@ float activeDist;
 PImage img;
 PGraphics buffer;
 
+/* @pjs preload="TBar/header.png"; */
 void setup()
 {
-  img = loadImage("header.png");
+  img = loadImage("TBar/header.png");
   img.loadPixels();
   int i=0;
   while(i<NUM_PTS)
@@ -51,16 +52,20 @@ void draw()
   buffer.beginDraw();
   buffer.noStroke();
 
+  buffer.pushStyle();
   buffer.fill(0,8);
   buffer.rect(0,0,width,height);
+  buffer.popStyle();
   for(int i=0;i<NUM_PTS;i++)
   {
+    //The bounds checking...oh my god so much bounds checking
     x[i]=x[i]+dx[i]>=width?width-1:x[i]+dx[i];
     y[i]=y[i]+dy[i]>=height?height-1:y[i]+dy[i];
     int x0=x[i]-1<=0?0:x[i]-1;
     int x1=x[i]+1>=width?width-1:x[i]+1;
     int y0=y[i]-1<=0?0:y[i]-1;
     int y1=y[i]+1>=height?height-1:y[i]+1;
+    //-------------------------------------------------------
     
     int idx0 = y[i]*width+x0;
     int idx1 = y[i]*width+x1;
@@ -83,8 +88,8 @@ void draw()
       activeDist = dist(x[i],y[i],epiX,epiY);
       if(activeDist<=shockwave)
       {
-        weight = max(1,(activeDist/(float)shockwave)*15);
-        redTerm = max(1,(activeDist/(float)shockwave)*255);
+        weight = max(1,(activeDist/shockwave)*15);
+        redTerm = max(1,(activeDist/shockwave)*255);
       }
       else
       {
@@ -96,12 +101,18 @@ void draw()
     {
       weight = max(1,lerp(15,1,activeDist/(screenDist*burstRadius)));
       redTerm = max(1,lerp(255,1,activeDist/(screenDist*burstRadius)));
+      if(mouseX>=width-10||mouseX<=10||mouseY>=height-10||mouseY<=10)
+      {
+        weight = 1;
+        redTerm = 1;
+      }
     }
     buffer.pushStyle();
     buffer.stroke(255,redTerm,0);
     buffer.strokeWeight(weight);
     buffer.line(x[i]-dx[i],y[i]-dy[i],x[i],y[i]);
     buffer.popStyle();
+    buffer.noStroke();
   }
   buffer.endDraw();  
   image(buffer,0,0);
@@ -113,7 +124,7 @@ void draw()
     }
     else
     {
-      shockwave+=8;
+      shockwave+=16;
     }
   }
   pushStyle();
@@ -130,6 +141,6 @@ void mousePressed()
     epiY=mouseY;
     exploding=true;
     shockwave=0;
-    seismicRadius = max(abs(epiX-width),epiX);
+    seismicRadius = max(abs(width-epiX),epiX);
   }
 }
