@@ -5,7 +5,8 @@ int x[] = new int[NUM_PTS];
 int y[] = new int[NUM_PTS];
 int dx[] = new int[NUM_PTS];
 int dy[] = new int[NUM_PTS];
-
+float screenDist;
+float mouseDist;
 void setup()
 {
   img = loadImage("header.png");
@@ -29,6 +30,8 @@ void setup()
   size(600,150,JAVA2D);
   ellipseMode(RADIUS);
   noStroke();
+  
+  screenDist = dist(0,0,width/2,height/2);
   buffer = createGraphics(width,height,JAVA2D);
   buffer.beginDraw();
   buffer.background(16);
@@ -40,6 +43,7 @@ void draw()
   img.loadPixels();
   buffer.beginDraw();
   buffer.noStroke();
+
   buffer.fill(0,8);
   buffer.rect(0,0,width,height);
   for(int i=0;i<NUM_PTS;i++)
@@ -64,21 +68,16 @@ void draw()
     {
       dy[i]*=-1;      
     }
+    
+    mouseDist = dist(x[i],y[i],mouseX,mouseY);
+    float weight = max(2,map(mouseDist*3,0,screenDist,10,2));
+    float r = max(1,map(mouseDist*3,0,screenDist,255,1));
     buffer.pushStyle();
-    buffer.stroke(0,255,0);
+    buffer.stroke(255,r,0);
+    buffer.strokeWeight(weight);
     buffer.line(x[i]-dx[i],y[i]-dy[i],x[i],y[i]);
     buffer.popStyle();
   }
   buffer.endDraw();  
   image(buffer,0,0);
-/*
-  for(int i=0;i<NUM_PTS;i++)
-  {
-    pushStyle();
-    stroke(0);
-    fill(255);
-    ellipse(x[i],y[i],3,3);
-    popStyle();
-  }*/  
 }
-
