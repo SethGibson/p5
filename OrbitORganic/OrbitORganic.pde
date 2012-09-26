@@ -1,15 +1,21 @@
-boolean organic = false;
-int pts=100; 
-float[] a;
-float[] r;
-float[] s;
+class Params
+{
+  boolean organic = false;
+  boolean accumulate = true;
+  int bugs = 100; 
+  float xDivisor = 111;
+  float yDivisor = 29;
+}
+
 float xterm = 0;
 float yterm = 0;
-float xdend = 111;
-float ydend = 29;
+//float[] a;
+//float[] r;
+//float[] s;
+
 void setup()
 {
-  size(600,600);
+  size(640,640);
   background(16);
   stroke(16);
   a = new float[pts];

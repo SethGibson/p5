@@ -1,29 +1,51 @@
+/*
+class Params
+{
+  int agents;
+  int minimumX,maximumX;
+  int minimumY,maximumY;
+  int fade;
+  
+  Params()
+  {
+    this.agents = 10;
+    this.minimumX = -10;
+    this.maximumX = 10;
+    this.minimumY = -10;
+    this.maximumY = 10;
+    this.fade = 2;
+  }
+}
+Params p5Params = new Params();
+*/
+int activeAgents;
 PGraphics lineBuffer;
-PVector[] positions = new PVector[numAgents];
-int agentCount = numAgents;
+PVector[] positions;
 void setup()
 {
-  size(800,450,P2D);
+  size(640,640,JAVA2D);
   stroke(0);
-  lineBuffer = createGraphics(width,height,P2D);
-  for(int i=0;i<numAgents;i++)
+  lineBuffer = createGraphics(width,height,JAVA2D);
+  positions = new PVector[p5Params.agents];  
+  for(int i=0;i<p5Params.agents;i++)
   {
     positions[i] = new PVector(width,height);
   }
   smooth();
+  activeAgents = p5Params.agents;
 }
 
 void draw()
 {
   background(0);
   lineBuffer.beginDraw();
-  lineBuffer.fill(0,bgAlpha);
+  lineBuffer.fill(0,p5Params.fade);
   lineBuffer.noStroke();
   lineBuffer.rect(0,0,width,height);
-  for(int i=0;i<agentCount;i++)
+  for(int i=0;i<activeAgents;i++)
   {
-    float xt = random((float)minX,(float)maxX);
-    float yt = random((float)minY,(float)maxY);
+    float xt = random((float)p5Params.minimumX,(float)p5Params.maximumX);
+    float yt = random((float)p5Params.minimumY,(float)p5Params.maximumY);
     int sw = (int)abs((xt+yt)/2);    
     int r = (int)map(positions[i].x,0,width,0,255);
     int b = (int)map(positions[i].y,0,height,0,255);
@@ -38,7 +60,7 @@ void draw()
   }
   lineBuffer.endDraw();
   image(lineBuffer,0,0);
-  for(int i=0;i<agentCount;i++)
+  for(int i=0;i<activeAgents;i++)
   {
     if(positions[i].x<0)
       positions[i].x=width;
@@ -64,16 +86,16 @@ void draw()
 void mousePressed()
 {
   lineBuffer = createGraphics(width,height,JAVA2D);  
-  positions = new PVector[numAgents];
-  for(int i=0;i<numAgents;i++)
+  positions = new PVector[p5Params.agents];
+  for(int i=0;i<p5Params.agents;i++)
   {
-    float nxt = random(minX,maxX);
-    float nyt = random(minY,maxY);
-    if(nxt==0) {nxt=nyt};
-    if(nyt==0) {nyt=nxt};
+    float nxt = random(p5Params.minimumX,p5Params.maximumX);
+    float nyt = random(p5Params.minimumY,p5Params.maximumY);
+    if(nxt==0) {nxt=nyt;}
+    if(nyt==0) {nyt=nxt;}
     positions[i] = new PVector(mouseX+nxt,mouseY+nyt);
   }
-  agentCount = numAgents;  
+  activeAgents = p5Params.agents;
 }
 
 

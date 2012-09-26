@@ -70,7 +70,7 @@ void draw()
     }
     
     mouseDist = dist(x[i],y[i],mouseX,mouseY);
-    float weight = max(2,map(mouseDist*3,0,screenDist,10,2));
+    float weight = max(1,map(mouseDist*3,0,screenDist,15,1));
     float r = max(1,map(mouseDist*3,0,screenDist,255,1));
     buffer.pushStyle();
     buffer.stroke(255,r,0);
