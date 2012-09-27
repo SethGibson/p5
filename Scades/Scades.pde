@@ -1,5 +1,4 @@
-/*
-class Params
+/*class Params
 {
   int resolution;
   Params()
@@ -21,20 +20,7 @@ void setup()
 {
   size(640,640,JAVA2D);
   ellipseMode(RADIUS);
-  activeRes = p5Params.resolution;
-  aspectRatio = width/(float)height;
-  xStep = width/activeRes;
-  yStep = height/activeRes;
-  rows = new int[activeRes+1];
-  for(int i=0;i<=activeRes;i++)
-  {
-    rows[i] = yStep*i;
-  }
-  
-  buffer = createGraphics(width,height,JAVA2D);
-  buffer.beginDraw();
-  buffer.background(16);
-  buffer.endDraw();
+  reset();
 }
 
 void draw()
@@ -87,4 +73,22 @@ void draw()
 void mouseReleased()
 {
   lineStarted=false;
+}
+
+void reset()
+{
+  activeRes = p5Params.resolution;
+  aspectRatio = width/(float)height;
+  xStep = width/activeRes;
+  yStep = height/activeRes;
+  rows = new int[activeRes+1];
+  for(int i=0;i<=activeRes;i++)
+  {
+    rows[i] = yStep*i;
+  }
+  
+  buffer = createGraphics(width,height,JAVA2D);
+  buffer.beginDraw();
+  buffer.background(16);
+  buffer.endDraw();
 }

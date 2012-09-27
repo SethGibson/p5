@@ -18,15 +18,17 @@ function onResolutionChanged()
 {
     if(!p5instance)
     {
-        
+        p5instance = Processing.getInstanceById('sketch');
     }
+	p5instance.reset();
 }
 
 var p5Params = {resolution:64};
 var gui = new dat.GUI({autoPlace:false});
 
 var resMenu = gui.add(p5Params, 'resolution', [16,24,40,64]);
-document.getElementById("gui-container").appendChild(gui.domElement)
+resMenu.onChange(onResolutionChanged);
+//document.getElementById("gui-container").appendChild(gui.domElement)
 </script>
 </body>
 </html>

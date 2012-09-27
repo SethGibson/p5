@@ -1,4 +1,16 @@
-boolean lines=true;
+/*class Params
+{
+  int lineWidth;
+  boolean asLines;
+  Params()
+  {
+    this.lineWidth=1;
+    this.asLines=true;
+  }
+}
+
+Params p5Params = new Params();
+*/
 int bs;
 int dir;
 float ex, ey, lex, ley;
@@ -51,14 +63,16 @@ void draw()
         mty=map(mouseY,height/2,height,0,1);
         float er=dist(ex,ey,width/2,height/2);
         er = map(er,0,sd,5,20);        
-        if(lines)
+        if(p5Params.asLines)
         {
           buffer.stroke(r,128,b);
-          buffer.strokeWeight(2);
+          buffer.strokeWeight(p5Params.lineWidth);
           buffer.line(lex,ley,ex,ey);          
         }
         else
         {
+          buffer.stroke(0);
+          buffer.strokeWeight(1);
           buffer.fill(r,128,b);
           buffer.ellipse(ex,ey,er,er);
         }
