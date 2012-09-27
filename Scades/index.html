@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>&#035;181: Scades</title>
+<script type="text/javascript" src="../js/processing.js"></script>
+<script type="text/javascript" src="../js/dat.gui.js"></script>
+</head>
+<body>
+<center>
+<h1><font face="calibri">Scades</font></h1>
+<canvas id="sketch" data-processing-sources="Scades.pde"></canvas>
+<p id="gui-container"></p>
+</font>
+</center>
+<script type="text/javascript">
+var p5instance;
+function onResolutionChanged()
+{
+    if(!p5instance)
+    {
+        
+    }
+}
+
+var p5Params = {resolution:64};
+var gui = new dat.GUI({autoPlace:false});
+
+var resMenu = gui.add(p5Params, 'resolution', [16,24,40,64]);
+document.getElementById("gui-container").appendChild(gui.domElement)
+</script>
+</body>
+</html>

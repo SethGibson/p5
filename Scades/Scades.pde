@@ -1,3 +1,4 @@
+/*
 class Params
 {
   int resolution;
@@ -7,7 +8,7 @@ class Params
   }
 }
 Params p5Params = new Params();
-
+*/
 PGraphics buffer;
 PImage bufferImg;
 boolean lineStarted=false;
