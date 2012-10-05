@@ -1,4 +1,4 @@
-/*class Params
+class Params
 {
   boolean organic;
   boolean accumulate;
@@ -11,12 +11,12 @@
     this.organic = false;
     this.accumulate = true;
     this.bugs = 100;
-    this.xDivisor = 111;
-    this.yDivisor = 29;
+    this.xDivisor = 5;
+    this.yDivisor = 2;
   }
 }
 Params p5Params = new Params();
-*/
+
 int count;
 float xterm = 0;
 float yterm = 0;
@@ -32,7 +32,7 @@ void setup()
   ellipseMode(RADIUS);
   for(int i=0;i<count;i++)
   {
-    swarm[i] = new PVector(random(0,width/2), random(0,2), random(5,15));    
+    swarm[i] = new PVector(random(0,width/2), random(-1,1), random(5,15));    
   }
 }
 
@@ -57,8 +57,8 @@ void draw()
       spd = swarm[i].y;
     }
     
-    float x0 = (swarm[i].x*sin(frameCount*PI/p5Params.xDivisor*spd))*xterm+width/2;
-    float y0 = (swarm[i].x*cos(frameCount*PI/p5Params.yDivisor*spd))*yterm+height/2;
+    float x0 = (swarm[i].x*sin(frameCount*PI/120*p5Params.xDivisor*spd))*xterm+width/2;
+    float y0 = (swarm[i].x*cos(frameCount*PI/120*p5Params.yDivisor*spd))*yterm+height/2;
     float rt = map(x0,0,width,0,255);
     float bt = map(y0,0,height,0,255);
     fill(rt,128,bt);

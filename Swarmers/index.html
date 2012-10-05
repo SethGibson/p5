@@ -13,13 +13,13 @@
 </center>
 
 <script type="text/javascript">
-var p5Params = {organic:false,accumulate:false,bugs:30,xDivisor:111,yDivisor:29};
+var p5Params = {organic:false,accumulate:false,bugs:30,xDivisor:5,yDivisor:2};
 var gui = new dat.GUI({autoPlace:false});
 gui.add(p5Params, 'organic');
 gui.add(p5Params, 'accumulate');
 gui.add(p5Params, 'bugs',5,100).step(1);
-gui.add(p5Params, 'xDivisor',2,200);
-gui.add(p5Params, 'yDivisor',2,200);
+gui.add(p5Params, 'xDivisor',1,10);
+gui.add(p5Params, 'yDivisor',1,10);
 document.getElementById('guiContainer').appendChild(gui.domElement);
 </script>
 </body>
