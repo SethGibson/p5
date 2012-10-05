@@ -10,17 +10,19 @@ void setup()
   size((int)bound,(int)bound,P3D);
   background(0);
   buffer = createGraphics(width,height,P3D);
-  noStroke();
+  noFill();
 }
 
 void draw()
 {
+  background(16);
   buffer.beginDraw();
+  buffer.smooth();
   if(accumulate==false)
   {
-    buffer.background(0);
+    buffer.background(16);
   }
-  buffer.noStroke();
+  buffer.noFill();
   buffer.lights();
   buffer.translate(xCenter,yCenter,zTrans);
   //buffer.rotateX(frameCount*PI/120);
@@ -43,7 +45,8 @@ void draw()
       buffer.translate(x*bound,y*bound,z*bound);
       float cr = map(x,-1,1,0,255);
       float cb = map(y,-1,1,0,255);
-      buffer.fill(cr,128,cb);
+      buffer.stroke(cr,128,cb);
+      buffer.strokeWeight(5);
       buffer.box(50,50,50);
       buffer.popMatrix();
     }
