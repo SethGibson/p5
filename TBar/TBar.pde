@@ -83,7 +83,7 @@ void draw(){
     }
     buffer.pushStyle();
     buffer.stroke(lerpColor(iBlue,iYellow,redTerm));
-    buffer.strokeWeight(lerp(2,20,redTerm));
+    buffer.strokeWeight(lerp(1,15,redTerm));
     buffer.line(x[i]-dx[i],y[i]-dy[i],x[i],y[i]);
     buffer.popStyle();
   }

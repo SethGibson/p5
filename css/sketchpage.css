@@ -1,12 +1,32 @@
 body
 {
-	background:rgb(64,48,32);
-	font-family:Calibri,sans-serif;
-	color:rgb(88,72,56);
+	margin:0px;
+	background-color:rgb(48,64,48);
+}
+
+header
+{
+	background-color:rgb(32,40,32);
+	position:relative;
+	height:250px;
+	width:100%;
+}
+footer
+{
+	background-color:rgb(32,40,32);	
+	position:absolute;
+	bottom:0;
+	height:300px;
+	width:100%;
+	z-index:0;
 }
 
 h1
 {
+	margin:0px;
+	font-weight:bold;
+	color:rgb(48,64,48);	
+	font-family:Calibri, sans-serif;	
 }
 
 canvas:focus
@@ -14,55 +34,68 @@ canvas:focus
 	outline:none;
 }
 
-#title-text
+h1#signature
 {
-	margin:0px;
+	position:absolute;
+	bottom:5px;
+	right:10px;
 }
 
-#table-main
+div#content-div
 {
-	display:table;
-	border-spacing:10px;
-	width:700px;
+	width:960px;
+	margin-left:auto;
+	margin-right:auto;
 }
 
-#table-row-00
+div#sketch-col
 {
-	display:table-row;
-}
+	position:relative;
+	width:640px;
+	top:-120px;
+	left:100px;
+	z-index:1;
+	padding:20px 20px 80px 20px;
 
-#sketch-main
+}
+div#gui-col
 {
-	display:table-cell;
-	width:680;
+	position:relative;
+	padding:20px 20px 20px 20px;
+	width:200px;
 	float:left;
-	vertical-align:top;
+	z-index:1;
 }
 
-#sketch-canvas
+#credits
 {
-	border:20px;
-}
-
-#table-gui-cell
-{
-	display:table-cell;
-	vertical-align:top;
-}
-
-#gui-main
-{
-	display:table-cell;
-	vertical-align:top;
-}
-
-#sketch-desc-main
-{
-	display:table-cell;
-	vertical-align:top;
+	color:rgb(48,64,48);
+	font-weight:bold;
+	font-family:Calibri, sans-serif;
+	position:relative;
+	left:-155px;
+	bottom:70px;
 }
 .element-bg
 {
-	background:rgb(88,72,56);
-	padding:20px;
+	background-color:rgb(64,80,64);
+}
+
+a:link
+{
+	color:rgb(64,80,64);
+	text-decoration:none;
+}
+a:visited
+{
+}
+a:hover
+{
+	color:green;
+}
+a:focus
+{
+}
+a:active
+{
 }

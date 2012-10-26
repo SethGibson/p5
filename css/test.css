@@ -1,28 +1,42 @@
 body
 {
 	margin:0px;
-
+	background-color:rgb(48,64,48);
 }
 
 header
 {
-	background-color:rgb(32,32,32);
-	height:150px;
-	margin:0px;
+	background-color:rgb(32,40,32);
+	position:relative;
+	height:200px;
+	width:100%;
+}
+footer
+{
+	background-color:rgb(32,40,32);	
+	position:absolute;
+	bottom:0;
+	height:200px;
+	width:100%;
 }
 
 h1
 {
 	margin:0px;
-	color:rgb(64,64,64);	
+	font-weight:bold;
+	color:rgb(48,64,48);	
 	font-family:Calibri, sans-serif;	
 }
-
-footer
+h1#sketch-title
 {
 	position:absolute;
-	bottom:0;
-	height:150px;
-	background-color:rgb(32,32,32);
-	width:100%;
+	left:10px;
+	bottom:5px;
 }
+h1#signature
+{
+	position:absolute;
+	top:5px;
+	right:10px;
+}
+
