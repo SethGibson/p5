@@ -35,11 +35,11 @@ void setup(){
   }
   iBlue = color(0,113,197);
   iYellow = color(255,218,0);
-  size(750,280,P2D);
+  size(750,280,JAVA2D);
   ellipseMode(RADIUS);
   noStroke();
   screenDist=dist(0,0,width/2,height/2);
-  buffer=createGraphics(width,height,P2D);
+  buffer=createGraphics(width,height,JAVA2D);
   buffer.beginDraw();
   buffer.background(16);
   buffer.endDraw();
