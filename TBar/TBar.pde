@@ -1,6 +1,6 @@
 boolean exploding;
 float burstRadius = 0.25;
-int NUM_PTS = 500;
+int NUM_PTS = 800;
 int x[] = new int[NUM_PTS];
 int y[] = new int[NUM_PTS];
 int dx[] = new int[NUM_PTS];
@@ -12,10 +12,13 @@ float weight,redTerm;
 float screenDist,activeDist;
 PImage img;
 PGraphics buffer;
+color iBlue;
+color iYellow;
 
 /* @pjs preload="TBar/header.png"; */
 void setup(){
-  img=loadImage("TBar/header.png");
+  //img=loadImage("TBar/header.png");
+  img=loadImage("header.png");
   img.loadPixels();
   int i=0;
   while(i<NUM_PTS){
@@ -30,11 +33,13 @@ void setup(){
       ++i;
     }
   }
-  size(750,200,JAVA2D);
+  iBlue = color(0,113,197);
+  iYellow = color(255,218,0);
+  size(750,280,P2D);
   ellipseMode(RADIUS);
   noStroke();
   screenDist=dist(0,0,width/2,height/2);
-  buffer=createGraphics(width,height,JAVA2D);
+  buffer=createGraphics(width,height,P2D);
   buffer.beginDraw();
   buffer.background(16);
   buffer.endDraw();
@@ -66,23 +71,19 @@ void draw(){
     if(exploding){
       activeDist = dist(x[i],y[i],epiX,epiY);
       if(activeDist<=shockwave){
-        weight = max(1,(activeDist/shockwave)*15);
-        redTerm = max(1,(activeDist/shockwave)*255);
+         redTerm = activeDist/shockwave;
       }else{
-        weight = 1;
-        redTerm = 1;
+         redTerm = 0;
       }
     }else{
-      weight = max(1,lerp(15,1,activeDist/(screenDist*burstRadius)));
-      redTerm = max(1,lerp(255,1,activeDist/(screenDist*burstRadius)));
+      redTerm = max(0,1-(activeDist/(screenDist*burstRadius)));
       if(mouseX>=width-10||mouseX<=10||mouseY>=height-10||mouseY<=10){
-        weight = 1;
-        redTerm = 1;
+         redTerm = 0;
       }
     }
     buffer.pushStyle();
-    buffer.stroke(255,redTerm,0);
-    buffer.strokeWeight(weight);
+    buffer.stroke(lerpColor(iBlue,iYellow,redTerm));
+    buffer.strokeWeight(lerp(2,20,redTerm));
     buffer.line(x[i]-dx[i],y[i]-dy[i],x[i],y[i]);
     buffer.popStyle();
   }
@@ -97,7 +98,7 @@ void draw(){
   }
   pushStyle();
   fill(32);
-  text("#181",710,190);
+  text("#181",710,270);
   popStyle();
 }
 void mousePressed(){

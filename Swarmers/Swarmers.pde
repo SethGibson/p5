@@ -11,8 +11,8 @@ class Params
     this.organic = false;
     this.accumulate = true;
     this.bugs = 100;
-    this.xDivisor = 5;
-    this.yDivisor = 2;
+    this.xDivisor = 2;
+    this.yDivisor = 5;
   }
 }
 Params p5Params = new Params();

@@ -1,0 +1,68 @@
+body
+{
+	background:rgb(64,48,32);
+	font-family:Calibri,sans-serif;
+	color:rgb(88,72,56);
+}
+
+h1
+{
+}
+
+canvas:focus
+{
+	outline:none;
+}
+
+#title-text
+{
+	margin:0px;
+}
+
+#table-main
+{
+	display:table;
+	border-spacing:10px;
+	width:700px;
+}
+
+#table-row-00
+{
+	display:table-row;
+}
+
+#sketch-main
+{
+	display:table-cell;
+	width:680;
+	float:left;
+	vertical-align:top;
+}
+
+#sketch-canvas
+{
+	border:20px;
+}
+
+#table-gui-cell
+{
+	display:table-cell;
+	vertical-align:top;
+}
+
+#gui-main
+{
+	display:table-cell;
+	vertical-align:top;
+}
+
+#sketch-desc-main
+{
+	display:table-cell;
+	vertical-align:top;
+}
+.element-bg
+{
+	background:rgb(88,72,56);
+	padding:20px;
+}
