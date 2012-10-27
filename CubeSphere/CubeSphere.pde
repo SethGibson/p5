@@ -1,19 +1,19 @@
 /*
 class Params
 {
-  int xResolution;
+  int resolution;
   boolean accumulate;
-  boolean xRotate;
-  boolean yRotate;
-  boolean zRotate;
+  boolean rotateX;
+  boolean rotateY;
+  boolean rotateZ;
   
   Params()
   {
-    this.xResolution=32;
+    this.resolution=32;
     this.accumulate=true;
-    this.xRotate=false;
-    this.yRotate=true;
-    this.zRotate=true;
+    this.rotateX=false;
+    this.rotateY=true;
+    this.rotateZ=true;
   }
 }
 Params p5Params = new Params();
@@ -33,21 +33,21 @@ void draw()
 {
   if(p5Params.accumulate==false)
   {
-    background(0xFF101010);
+    background(16);
   }
   noStroke();
   lights();
   pushMatrix();
   translate(xCenter,yCenter,zTrans);
-  if(p5Params.xRotate)
+  if(p5Params.rotateX)
     rotateX(frameCount*PI/120);
-  if(p5Params.yRotate)
+  if(p5Params.rotateY)
     rotateY(frameCount*PI/120);
-  if(p5Params.zRotate)
+  if(p5Params.rotateZ)
     rotateZ(frameCount*PI/120);
-  float yRes = p5Params.xResolution/2;  
+  float yRes = p5Params.resolution/2;  
   float thStep = 1.0/yRes;
-  float phStep = 1.0/p5Params.xResolution;
+  float phStep = 1.0/p5Params.resolution;
   
   for(float th=0;th<=1;th+=thStep)
   {
@@ -70,7 +70,7 @@ void draw()
   popMatrix();
   if(p5Params.accumulate)
   {
-    fill(0x08000000);
+    fill(0,8);
     rect(0,0,width,height);
   }
   

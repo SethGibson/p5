@@ -1,15 +1,13 @@
 class boxy
 {
-  float y;
   float b;
   float a;
   float st;
   color c;
   
   boxy(){}
-  boxy(float y, float b, float a, float st, color c)
+  boxy(float b, float a, float st, color c)
   {
-    this.y=y;
     this.b=b;
     this.a=a;
     this.st=st;
@@ -17,30 +15,42 @@ class boxy
   }
 }
 
-int numCubes = 1100;
-float xdiv = 5;
-float ydiv = 3;
-float zdiv = 2;
-float[] xs;
-float[] ys;
-float[] zs;
-float[] aw;
-float[] ah;
-
+int numCubes = 1500;
 boxy[] boxes = new boxy[numCubes];
-
+/*
+class Params
+{
+	boolean wireframe;
+	boolean rotateX;
+	boolean rotateY;
+	boolean rotateZ;
+	float divideX;
+	float divideY;
+	float divideZ;
+	
+	Params()
+	{
+		this.wireframe=false;
+		this.rotateX=true;
+		this.rotateY=true;
+		this.rotateZ=true;	
+		this.divideX=4;
+		this.divideY=3;
+		this.divideZ=2;
+	}
+}
+Params p5Params = new Params();
+*/
 void setup()
 {
-  size(800,450,OPENGL);
+  size(640,640,P3D);
   for(int i=0;i<numCubes;i++)
   {
-    float t = random(0,1);
-    float y = random(-height,height);
     float b = random(5,15);
-    float a = random(-width,width);
-    float st = random(0.01,0.5);
+    float a = random(-900,900);
+    float st = random(0.025,0.7);
     color c = color(0,random(46,192),random(128,255));
-    boxes[i] = new boxy(y,b,a,st,c);
+    boxes[i] = new boxy(b,a,st,c);
   }
   noStroke();
   frameRate(60);
@@ -49,40 +59,34 @@ void setup()
 void draw()
 {
   background(0);
+  lights();
   pushMatrix();
   translate(width/2,height/2,0);
-  rotateZ(frameCount*PI/240);
-  //rotateY(frameCount*PI/240);
-  //rotateX(frameCount*PI/240);
-  rotateY((frameCount+mouseY)*PI/240);  
-  rotateX((frameCount+mouseX)*PI/240);
+  if(p5Params.rotateZ)
+	rotateZ(frameCount*PI/100);
+  if(p5Params.rotateX)  
+	rotateX(frameCount*PI/200);
+  if(p5Params.rotateY)	
+	rotateY(frameCount*PI/150);
   for(int i=0;i<numCubes;i++)
   {
-    float al = map(abs(boxes[i].a),0,width,0,255);      
-    fill(boxes[i].c,255-al);
-    float x = boxes[i].a*sin(frameCount*boxes[i].st*PI/60)/xdiv;
-    float y = boxes[i].a*sin(frameCount*boxes[i].st*PI/120)/ydiv;
-    float z = boxes[i].a*cos(frameCount*boxes[i].st*PI/60)/zdiv;
+    float x = boxes[i].a*sin(frameCount*boxes[i].st*PI/60)/p5Params.divideX;
+    float y = boxes[i].a*sin(frameCount*boxes[i].st*PI/120)/p5Params.divideY;
+    float z = boxes[i].a*cos(frameCount*boxes[i].st*PI/60)/p5Params.divideZ;
     pushMatrix();
     translate(x,y,z);
+	if(p5Params.wireframe)
+	{
+		noFill();
+		stroke(boxes[i].c);
+	}
+	else
+	{
+		noStroke();
+		fill(boxes[i].c);
+	}
     box(boxes[i].b,boxes[i].b,boxes[i].b);
     popMatrix();
   }
   popMatrix();
-}
-
-void keyPressed()
-{
-  if(key=='q')
-    ++xdiv;
-  if(key=='a')
-    --xdiv;
-  if(key=='w')
-    ++ydiv;
-  if(key=='s')
-    --ydiv;
-  if(key=='e')
-    ++zdiv;
-  if(key=='d')
-    --zdiv;
 }

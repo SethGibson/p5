@@ -1,26 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<title>&#035;181: Points On A Sphere</title>
-<script type="text/javascript" src="../js/processing.js"></script>
-<script type="text/javascript" src="../js/dat.gui.js"></script>
-</head>
-<body>
-<center>
-<h1><font face="calibri">&#035;181: Points On A Sphere</font></h1>
-<canvas id="tutorial" data-processing-sources="CubeSphere.pde"></canvas>
-<p id="guiContainer"></p>
-</center>
-
-<script type="text/javascript">
-var p5Params = {xResolution:32,accumulate:false,xRotate:false,yRotate:true,zRotate:true};
-var gui = new dat.GUI({autoPlace:false});
-gui.add(p5Params, 'xResolution', 2,64).step(2);
-gui.add(p5Params, 'accumulate');
-gui.add(p5Params, 'xRotate');
-gui.add(p5Params, 'yRotate');
-gui.add(p5Params, 'zRotate');
-document.getElementById('guiContainer').appendChild(gui.domElement);
-</script>
-</body>
+	<head>
+		<title>&#035;181: Points On A Sphere</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="../css/sketchpage.css">
+		<script src="../js/processing.js"></script>
+		<script src="../js/dat.gui.js"></script>
+		<style>
+			h1#sketch-title
+			{
+				position:relative;
+				top:-70px;
+				right:165px;
+				z-index:1;
+			}
+			div#gui-bg
+			{
+				height:160px;			
+			}
+			div#desc-bg
+			{
+				top:20px;
+				left:0px;
+			}
+			p#desc-main
+			{
+				height:412px;
+			}
+		</style>		
+	</head>
+	<body>
+		<header>
+		</header>
+		<div id="content-div">
+			<h1 id="sketch-title">Points On A Sphere</h1>
+			<span id="credits">
+				made with <a href="http://processingjs.org">processing.js</a>
+				and <a href="http://workshop.chromeexperiments.com/exampes/gui">dat.gui</a>
+			</span>
+			<div id="sketch-col" class="element-bg">
+				<canvas id="sketch-main" data-processing-sources="CubeSphere.pde"></canvas>
+			</div>
+			<div id="gui-col">
+				<div id="gui-bg" class="element-bg">
+					<div id="gui-main"></div>
+				</div>
+				<div id="desc-bg" class="element-bg">
+					<p id="desc-main">&nbsp;&nbsp;&nbsp;&nbsp;This sketch was developed for two reasons,
+					one, I was trying to figure out how to distribute points around a sphere for a 3D UI
+					prototype I'm building at work and two, I wanted to learn how 3D in processing 2 works. Nothing fancy here, just shapes and lights, but it served its purpose(s).  This one worked so nicely, I even decided to "bring it into the real world" and project it onto a paper globe we had in the lab.<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;Accumulation works best at lower resolutions, 4 or 8 are good.<br/><br/>
+					<time datetime="2012-10-26">v1.0/2012.10.26</time><br/>
+					<a href="CubeSphere.pde">Source</a></p>
+				</div>			
+			</div>
+		</div>
+		<footer>
+			<h2 id="signature">&#035;181</h2>
+		</footer>		
+		<script>
+			var p5Params = {resolution:32,accumulate:false,rotateX:false,rotateY:true,rotateZ:true};
+			var gui = new dat.GUI({autoPlace:false});
+			gui.add(p5Params, 'resolution', 2,64).step(2);
+			gui.add(p5Params, 'accumulate');
+			gui.add(p5Params, 'rotateX');
+			gui.add(p5Params, 'rotateY');
+			gui.add(p5Params, 'rotateZ');
+			document.getElementById('gui-main').appendChild(gui.domElement);
+		</script>
+	</body>
 </html>

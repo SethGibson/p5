@@ -1,24 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<title>&#035;181: SineArt</title>
-<script type="text/javascript" src="../js/processing.js"></script>
-<script type="text/javascript" src="../js/dat.gui.js"></script>
-</head>
-<body>
-<center>
-<h1><font face="calibri">SineArt</font></h1>
-<canvas id="sketch" data-processing-sources="SineArt.pde"></canvas>
-<p id="gui-container"></p>
-</font>
-</center>
-<script type="text/javascript">
-var p5Params = {lineWidth:1, asLines:true};
-var gui = new dat.GUI({autoPlace:false});
+	<head>
+		<title>&#035;181: Bubble Chamber</title>
+		<meta charset="utf-8">
+		<script src="../js/processing.js"></script>
+		<script src="../js/dat.gui.js"></script>
+		<link rel="stylesheet" href="../css/sketchpage.css">
+		<style>
+			h1#sketch-title
+			{
+				position:relative;
+				top:-70px;
+				right:130px;
+				z-index:1;
+			}
+			div#gui-bg
+			{
+				height:80px;			
+			}
+			p#desc-main
+			{
+				height:492px;
+			}
+		</style>				
+	</head>
+	<body>
+		<header>
+		</header>
+		<div id="content-div">
+			<h1 id="sketch-title">Bubble Chamber</h1>
+			<span id="credits">
+				made with <a href="http://processingjs.org">processing.js</a>
+				and <a href="http://workshop.chromeexperiments.com/exampes/gui">dat.gui</a>
+			</span>
+			<div id="sketch-col" class="element-bg">
+				<canvas id="sketch-main" data-processing-sources="SineArt.pde"></canvas>
+			</div>
+			<div id="gui-col">
+				<div id="gui-bg" class="element-bg">
+					<div id="gui-main"></div>
+				</div>
+				<div id="desc-bg" class="element-bg">
+					<p id="desc-main">&nbsp;&nbsp;&nbsp;&nbsp;Truth be told, the only relation to bubble chambers in this sketch is that some of the results look vaguely like some old images from bubble chambers I saw in a high school science text. &nbsp;This is an exercise in "thinking inside the box", if you will, as the original version was much more interactive, but I became intrigued by the idea of how much I could condense the ruleset and still produce interesting results.  I'm not sure why, but I find the lack of interactivity in this version strangely compelling. &nbsp;Others may have different opinons...<br/><br/>
+					<time datetime="2012-10-26">v1.0/2012.10.26</time><br/>
+					<a href="SineArt.pde">Source</a></p>
+				</div>			
+			</div>
+		</div>
+		<footer>
+			<h2 id="signature">&#035;181</h2>
+		</footer>				
+		<script type="text/javascript">
+		var p5Params = {lineWidth:1, asLines:true};
+		var gui = new dat.GUI({autoPlace:false});
 
-gui.add(p5Params, 'lineWidth', 1,10).step(1);
-gui.add(p5Params, 'asLines');
-document.getElementById('gui-container').appendChild(gui.domElement);
-</script>
-</body>
+		gui.add(p5Params, 'lineWidth', 1,10).step(1);
+		gui.add(p5Params, 'asLines');
+		document.getElementById('gui-main').appendChild(gui.domElement);
+		</script>
+	</body>
 </html>

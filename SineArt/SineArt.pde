@@ -22,7 +22,7 @@ PGraphics buffer;
 
 void setup()
 {
-  size(800,800,JAVA2D);
+  size(640,640,JAVA2D);
   background(0);
   noStroke();
   ellipseMode(RADIUS);

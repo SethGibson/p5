@@ -1,3 +1,4 @@
+/*
 class Params
 {
   boolean organic;
@@ -16,7 +17,7 @@ class Params
   }
 }
 Params p5Params = new Params();
-
+*/
 int count;
 float xterm = 0;
 float yterm = 0;
@@ -27,13 +28,7 @@ void setup()
   size(640,640,JAVA2D);
   background(16);
   stroke(16);
-  swarm = new PVector[p5Params.bugs];
-  count = p5Params.bugs;
-  ellipseMode(RADIUS);
-  for(int i=0;i<count;i++)
-  {
-    swarm[i] = new PVector(random(0,width/2), random(-1,1), random(5,15));    
-  }
+  reset();
 }
 
 void draw()
@@ -57,13 +52,29 @@ void draw()
       spd = swarm[i].y;
     }
     
-    float x0 = (swarm[i].x*sin(frameCount*PI/120*p5Params.xDivisor*spd))*xterm+width/2;
-    float y0 = (swarm[i].x*cos(frameCount*PI/120*p5Params.yDivisor*spd))*yterm+height/2;
+    float x0 = (swarm[i].x*sin(frameCount*PI/120*p5Params.divideX*spd))*xterm+width/2;
+    float y0 = (swarm[i].x*cos(frameCount*PI/120*p5Params.divideY*spd))*yterm+height/2;
     float rt = map(x0,0,width,0,255);
     float bt = map(y0,0,height,0,255);
     fill(rt,128,bt);
     ellipse(x0,y0,rad,rad);
   }  
+}
+void reset()
+{
+  swarm = new PVector[p5Params.bugs];
+  count = p5Params.bugs;
+  ellipseMode(RADIUS);
+  for(int i=0;i<count;i++)
+  {
+    swarm[i] = new PVector(random(0,width/2), random(-1,1), random(5,15));    
+  }
+}
+
+void mousePressed()
+{
+	if(mouseButton==RIGHT)
+		reset();
 }
 
 void mouseDragged()

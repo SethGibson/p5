@@ -11,14 +11,18 @@
 			{
 				position:relative;
 				top:-70px;
-				left:0px;
+				right:0px;
 				z-index:1;
+			}
+			div#gui-bg
+			{
+				height:50px;			
 			}
 			p#desc-main
 			{
-				height:525px;				
+				height:522px;
 			}
-		</style>
+		</style>	
 	</head> 
 	<body>
 		<header>
@@ -32,8 +36,8 @@
 			<div id="sketch-col" class="element-bg">
 				<canvas id="sketch-main" data-processing-sources="Scades.pde"></canvas>
 			</div>
-			<div id="gui-col" class="element-bg">
-				<div id="gui-bg">
+			<div id="gui-col">
+				<div id="gui-bg" class="element-bg">
 					<div id="gui-main"></div>
 				</div>
 				<div id="desc-bg" class="element-bg">

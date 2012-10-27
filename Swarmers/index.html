@@ -1,26 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<title>&#035;181: Bugs!</title>
-<script type="text/javascript" src="../js/processing.js"></script>
-<script type="text/javascript" src="../js/dat.gui.js"></script>
-</head>
-<body>
-<center>
-<h1><font face="calibri">&#035;181: Bugs!</font></h1>
-<canvas id="sketch" data-processing-sources="Swarmers.pde"></canvas>
-<p id="guiContainer"></p>
-</center>
+	<head>
+		<title>&#035;181: Bugs!</title>
+		<meta charset="utf-8">
+		<script src="../js/processing.js"></script>
+		<script src="../js/dat.gui.js"></script>
+		<link rel="stylesheet" href="../css/sketchpage.css">
+		<style>
+			h1#sketch-title
+			{
+				position:relative;
+				top:-70px;
+				left:20px;
+				z-index:1;
+			}
+			div#gui-bg
+			{
+				height:160px;			
+			}
+			p#desc-main
+			{
+				height:412px;
+			}
+		</style>				
+	</head>
+	<body>
+		<header>
+		</header>
+		<div id="content-div">
+			<h1 id="sketch-title">Bugs!</h1>
+			<span id="credits">
+				made with <a href="http://processingjs.org">processing.js</a>
+				and <a href="http://workshop.chromeexperiments.com/exampes/gui">dat.gui</a>
+			</span>
+			<div id="sketch-col" class="element-bg">
+				<canvas id="sketch-main" data-processing-sources="Swarmers.pde"></canvas>
+			</div>
+			<div id="gui-col">
+				<div id="gui-bg" class="element-bg">
+					<div id="gui-main"></div>
+				</div>
+				<div id="desc-bg" class="element-bg">
+					<p id="desc-main">&nbsp;&nbsp;&nbsp;&nbsp;Parametric functions with some organic-ness. &nbsp;Orgametrics? &nbsp;Paraganics? &nbsp;This started out as a planetary motion study, but it reminded me more of some swarming sims I'd done a while back, so Bugs! it was. &nbsp;With this sketch, it's fun to just let it run and watch the behavior cycle and evolve.<br/><br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;Left drag to change the sim bounds, right-click to reset the sim.<br/><br/>
+					<time datetime="2012-10-26">v1.0/2012.10.26</time><br/>
+					<a href="Swarmers.pde">Source</a></p>
+				</div>			
+			</div>
+		</div>
+		<footer>
+			<h2 id="signature">&#035;181</h2>
+		</footer>				
 
-<script type="text/javascript">
-var p5Params = {organic:false,accumulate:false,bugs:30,xDivisor:5,yDivisor:2};
-var gui = new dat.GUI({autoPlace:false});
-gui.add(p5Params, 'organic');
-gui.add(p5Params, 'accumulate');
-gui.add(p5Params, 'bugs',5,100).step(1);
-gui.add(p5Params, 'xDivisor',1,10);
-gui.add(p5Params, 'yDivisor',1,10);
-document.getElementById('guiContainer').appendChild(gui.domElement);
-</script>
-</body>
+		<script type="text/javascript">
+		var p5Params = {organic:false,accumulate:false,bugs:30,divideX:5,divideY:2};
+		var gui = new dat.GUI({autoPlace:false});
+		gui.add(p5Params, 'organic');
+		gui.add(p5Params, 'accumulate');
+		gui.add(p5Params, 'bugs',5,100).step(1);
+		gui.add(p5Params, 'divideX',1,10);
+		gui.add(p5Params, 'divideY',1,10);
+		document.getElementById('gui-main').appendChild(gui.domElement);
+		</script>
+	</body>
 </html>
