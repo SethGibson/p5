@@ -14,6 +14,10 @@
 				left:0px;
 				z-index:1;
 			}
+			p#desc-main
+			{
+				height:525px;				
+			}
 		</style>
 	</head> 
 	<body>
@@ -21,7 +25,10 @@
 		</header>
 		<div id="content-div">
 			<h1 id="sketch-title">Scades</h1>
-			<span id="credits">made with <a href="http://processingjs.org">processing.js</a> and <a href="http://workshop.chromeexperiments.com/exampes/gui">dat.gui</a></span>
+			<span id="credits">
+				made with <a href="http://processingjs.org">processing.js</a>
+				and <a href="http://workshop.chromeexperiments.com/exampes/gui">dat.gui</a>
+			</span>
 			<div id="sketch-col" class="element-bg">
 				<canvas id="sketch-main" data-processing-sources="Scades.pde"></canvas>
 			</div>
@@ -30,31 +37,37 @@
 					<div id="gui-main"></div>
 				</div>
 				<div id="desc-bg" class="element-bg">
-					<div id="desc-main">sgfsfgsfgsfgsfgsfgsfgsfgsfgfs</div>
+					<p id="desc-main">&nbsp;&nbsp;&nbsp;&nbsp;This sketch started from a random exercise, I was trying to make a grid of scrolling dots. My intent was to do some video capture and then process the frames. I added a static image for testing, and I noticed that certain images, specifically those with lots of black negative space, gave really good feedback, so this sketch became a simple drawing app to try and capture the interesting motion effect from the combination of color and negative.<br/><br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;I think I was also trying to learn the ins-and-outs of working with offscreen buffers in processing.  Can't get enough of those things now...<br/><br/>
+					<time datetime="2012-10-26">v1.0/2012.10.26</time><br/>
+					<a href="Scapes.pde">Source</a></p>
 				</div>			
 			</div>			
 		</div>
 		<footer>
-			<h1 id="signature">&#035;181</h1>
+			<h2 id="signature">&#035;181</h2>
 		</footer>
+		<!-- begin javascript -->
 		<script>
 			var p5instance;
+			var p5Params = {resolution:64};
+			var gui = new dat.GUI({autoPlace:false});
+			var resMenu = gui.add(p5Params, 'resolution', [16,40,64]);
+			
 			function onResolutionChanged(value)
 			{
 				if(!p5instance)
 				{
-					p5instance = Processing.getInstanceById('sketch');
+					p5instance = Processing.getInstanceById('sketch-main');
 				}
+				p5Params.resolution=Number(value);
 				p5instance.reset();
 			}
 
-			var p5Params = {resolution:64};
-			var gui = new dat.GUI({autoPlace:false});
-
-			var resMenu = gui.add(p5Params, 'resolution', [16,24,40,64]);
 			resMenu.onChange(onResolutionChanged);
 			document.getElementById("gui-main").appendChild(gui.domElement)
 		</script>
+		<!-- end javascript -->		
 	</body>
 </html>
 
