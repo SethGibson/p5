@@ -3,7 +3,7 @@ body
 	font-family:Calibri, sans-serif;	
 	margin:0px;
 	background-color:rgb(48,64,48);
-	color:rgb(48,64,48);		
+	color:rgb(48,64,48);
 }
 
 header
@@ -12,10 +12,12 @@ header
 	position:relative;
 	height:150px;
 	width:100%;
+	border-bottom:1px solid black;
 }
 footer
 {
-	background-color:rgb(32,40,32);	
+	background-color:rgb(32,40,32);
+	border-top:1px solid black;
 	position:absolute;
 	bottom:0;
 	height:300px;
@@ -28,10 +30,9 @@ h1, h2
 	margin:0px;
 	font-weight:bold;
 }
-
-canvas:focus
+h1#sketch-title
 {
-	outline:none;
+	color:rgb(116,100,68);
 }
 
 h2#signature
@@ -63,7 +64,7 @@ div#gui-col
 {
 	position:relative;
 	left:800px;
-	top:-865px;
+	top:-863px;
 	z-index:1;
 }
 div#gui-bg
@@ -103,9 +104,19 @@ span#credits
 	background-color:rgb(64,80,64);
 }
 
+.element-stroke
+{
+	border:1px solid rgb(116,100,68);
+}
+
+canvas:focus
+{
+	outline:none;
+}
+
 a:link
 {
-	color:rgb(64,80,64);
+	color:rgb(116,100,68);
 	text-decoration:none;
 }
 a:visited

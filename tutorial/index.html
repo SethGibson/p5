@@ -1,24 +1,62 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>&#035;181: processing.js and dat.gui tutorial</title>
-<script type="text/javascript" src="../js/processing.js"></script>
-<script type="text/javascript" src="../js/dat.gui.js"></script>
-</head>
-<body>
-<center>
-<h1><font face="calibri">&#035;181: processing.js and dat.gui tutorial</font></h1>
-<canvas id="tutorial" data-processing-sources="tutorial.pde"></canvas>
-<p id="guiContainer"></p>
-</center>
-
-<script type="text/javascript">
-var ellipseParams = {radiusX:10,radiusY:10,lineWidth:1};
-var gui = new dat.GUI({autoPlace:false});
-gui.add(ellipseParams, 'radiusX', 10,200).step(1);
-gui.add(ellipseParams, 'radiusY', 10,200).step(1);
-gui.add(ellipseParams, 'lineWidth', 1,20).step(1);
-document.getElementById('guiContainer').appendChild(gui.domElement);
-</script>
-</body>
+	<head>
+		<title>&#035;181: processing.js and dat.gui tutorial</title>
+		<meta charset="utf-8">
+		<script src="../js/processing.js"></script>
+		<script src="../js/dat.gui.js"></script>
+		<link rel="stylesheet" href="../css/sketchpage.css">
+		<style>
+			h1#sketch-title
+			{
+				position:relative;
+				top:-70px;
+				right:340px;
+				z-index:1;
+			}
+			div#gui-bg
+			{
+				height:105px;			
+			}
+			p#desc-main
+			{
+				height:463px;
+			}
+		</style>				
+	</head>
+	<body>
+		<header>
+		</header>
+		<div id="content-div">
+			<h1 id="sketch-title">processing.js and dat.gui tutorial</h1>
+			<span id="credits">
+				made with <a href="http://processingjs.org">processing.js</a>
+				and <a href="http://workshop.chromeexperiments.com/exampes/gui">dat.gui</a>
+			</span>
+			<div id="sketch-col" class="element-bg element-stroke">
+				<canvas id="sketch-main" data-processing-sources="tutorial.pde"></canvas>
+			</div>
+			<div id="gui-col">
+				<div id="gui-bg" class="element-bg element-stroke">
+					<div id="gui-main"></div>
+				</div>
+				<div id="desc-bg" class="element-bg element-stroke">
+					<p id="desc-main">&nbsp;&nbsp;&nbsp;&nbsp;Parametric functions with some organic-ness. &nbsp;Orgametrics? &nbsp;Paraganics? &nbsp;This started out as a planetary motion study, but it reminded me more of some swarming sims I'd done a while back, so Bugs! it was. &nbsp;With this sketch, it's fun to just let it run and watch the behavior cycle and evolve.<br/><br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;Left drag to change the sim bounds, right-click to reset the sim.<br/><br/>
+					<time datetime="2012-10-26">v1.0/2012.10.26</time><br/>
+					<a href="tutorial.pde">Source</a></p>
+				</div>			
+			</div>
+		</div>
+		<footer>
+			<h2 id="signature">&#035;181</h2>
+		</footer>				
+		
+		<script>
+			var p5Params = {radiusX:10,radiusY:10,lineWidth:1};
+			var gui = new dat.GUI({autoPlace:false});
+			gui.add(p5Params, 'radiusX', 10,300).step(1);
+			gui.add(p5Params, 'radiusY', 10,300).step(1);
+			gui.add(p5Params, 'lineWidth', 1,30).step(1);
+			document.getElementById('gui-main').appendChild(gui.domElement);
+		</script>
+	</body>
 </html>

@@ -1,13 +1,13 @@
 void setup()
 {
-  size(400,400,P2D);
+  size(640,640,JAVA2D);
   ellipseMode(RADIUS);
 }
 
 void draw()
 {
   background(128);
-  strokeWeight(ellipseParams.lineWidth);
-  ellipse(width/2,height/2,ellipseParams.radiusX,ellipseParams.radiusY);
+  strokeWeight(p5Params.lineWidth);
+  ellipse(width/2,height/2,p5Params.radiusX,p5Params.radiusY);
 }
 
