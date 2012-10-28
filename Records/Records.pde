@@ -1,12 +1,25 @@
-int PER_CLICK = 5;
-int bgmode = 3;
-boolean organic = true;
 ArrayList<PVector> points;
 float tr = 1;
+/*
+class Params
+{
+	int spawncount;
+	int clearmode;
+	boolean organic;
+	
+	Params()
+	{
+		this.spawncount=5;
+		this.clearmode=3;
+		this.organic=true;
+	}
+}
+Params p5Params = new Params();
+*/
 void setup()
 {
-  size(800,800,P2D);
-  background(0);
+  size(640,640,JAVA2D);
+  background(16);
   stroke(0);
   ellipseMode(RADIUS);
   smooth();
@@ -16,20 +29,20 @@ void setup()
 
 void draw()
 {
-  switch(bgmode)
+  switch(p5Params.clearmode)
   {
-    case 1:
+    case 'clear':
     {
-      background(0);
+      background(16);
       break;
     }
-    case 2:
+    case 'accumulate':
     {
       fill(0,8);
       rect(0,0,width,height);
       break;
     }
-    case 3:
+    case 'none':
     {
       break;
     }
@@ -45,7 +58,7 @@ void draw()
     
     fill(r,128,b);
     float er = p.z*30;
-    if(organic)
+    if(p5Params.organic)
       er = p.z*random(10,30);
     ellipse(p.x*(width/2),p.y*(height/2),er,er);
     popMatrix();
@@ -54,33 +67,20 @@ void draw()
 
 void mousePressed()
 {
-  for(int c=0;c<PER_CLICK;c++)
+  if(mouseButton==LEFT)
   {
-    float _z = 2.0*random(0,1)-1.0;
-    float _t = 2.0*PI*random(0,1);
-    float _r = sqrt(1.0-(_z*_z));
-    
-    points.add(new PVector(_r*cos(_t), _r*sin(_t), _z));
-  }
-  tr=-tr;
-}
-
-void keyPressed()
-{
-  if(key=='1')
-  {
-    bgmode=1;
-  }
-  else if(key=='2')
-  {
-    bgmode=2;
-  }
-  else if(key=='3')
-  {
-    bgmode=3;
+	  for(int c=0;c<p5Params.spawncount;c++)
+	  {
+		float _z = 2.0*random(0,1)-1.0;
+		float _t = 2.0*PI*random(0,1);
+		float _r = sqrt(1.0-(_z*_z));
+		
+		points.add(new PVector(_r*cos(_t), _r*sin(_t), _z));
+	  }
+	  tr=-tr;
   }
   else
   {
-    points.clear();
+	points.clear();
   }
 }
