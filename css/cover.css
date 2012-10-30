@@ -9,7 +9,6 @@ body
 header
 {
 	background-color:rgb(32,40,32);
-	position:relative;
 	height:150px;
 	width:100%;
 	border-bottom:1px solid black;
@@ -27,42 +26,29 @@ footer
 
 div#content-div
 {
-	width:960px;
-	margin-left:auto;
-	margin-right:auto;
+	width:1000px;
+	margin:auto;
 }
 
-div#table-main
+div#sketch-head
 {
-	display:table;
-	border-spacing:20px;
-}
-div#table-head
-{
-	display:table-cell;
-	width:960px;
-}
-div#tablerow
-{
-	display:table-row;
-}
-div.table-thumb
-{
-	display:table-cell;
 	position:relative;
-	width:300px;
-	height:160px;
-	padding:10px;
-	z-index:1;	
-	
-	background-color:rgb(48,64,48);	
+	width:960px;
+	height:210px;
+	top:-100px;
 }
 
 .element-bg
 {
 	background-color:rgb(64,80,64);
+	padding:20px;
 }
 .element-stroke
 {
 	border:1px solid rgb(116,100,68);
+}
+
+canvas:focus
+{
+	outline:none;
 }
