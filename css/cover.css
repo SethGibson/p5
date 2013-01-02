@@ -1,41 +1,66 @@
 body
 {
-	font-family:Calibri, sans-serif;	
+	font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 	margin:0px;
-	background-color:rgb(48,64,48);
+	background-color:rgb(32,40,32);
 	color:white;
 }
 
 header
 {
-	background-color:rgb(32,40,32);
-	height:150px;
+	background-color:rgb(48,64,48);
+	height:250px;
 	width:100%;
 	border-bottom:1px solid black;
 }
 footer
 {
-	background-color:rgb(32,40,32);
+	background-color:rgb(48,64,48);
 	border-top:1px solid black;
 	position:absolute;
 	bottom:0;
-	height:300px;
+	height:500px;
 	width:100%;
 	z-index:0;
 }
 
+h3
+{
+	margin:10px 0px 10px 0px;
+}
 div#content-div
 {
-	width:1000px;
+	width:1150px;
 	margin:auto;
 }
 
-div#sketch-head
+div#galleries
 {
 	position:relative;
-	width:960px;
-	height:210px;
-	top:-100px;
+	top:50px;
+	z-index:1;
+	text-align:left;
+}
+div#contact-info
+{
+	position:relative;
+	top:-40px;
+	z-index:1;
+	text-align:right;
+}
+div.page-text
+{
+	color:rgb(32,40,32);
+	font-weight:bold;
+	font-size:x-large;
+}
+
+canvas#sketch-main
+{
+	position:relative;
+	top:50px;
+	border:1px solid rgb(0,0,0);
+	z-index:1;
 }
 
 .element-bg
@@ -51,4 +76,31 @@ div#sketch-head
 canvas:focus
 {
 	outline:none;
+}
+
+a
+{
+	color:rgb(32,40,32);
+	text-decoration:none;
+}
+
+a:link
+{
+}
+
+a:visited
+{
+}
+
+a:hover
+{
+	color:rgb(140,103,64);
+}
+
+a:focus
+{
+}
+
+a:active
+{
 }

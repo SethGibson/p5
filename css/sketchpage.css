@@ -32,7 +32,7 @@ h1, h2
 }
 h1#sketch-title
 {
-	color:rgb(116,100,68);
+	color:rgb(140,103,64);
 }
 
 h2#signature
@@ -106,7 +106,7 @@ span#credits
 
 .element-stroke
 {
-	border:1px solid rgb(116,100,68);
+	border:1px solid rgb(0,0,0);
 }
 
 canvas:focus
@@ -116,7 +116,7 @@ canvas:focus
 
 a:link
 {
-	color:rgb(116,100,68);
+	color:rgb(140,103,64);
 	text-decoration:none;
 }
 a:visited
